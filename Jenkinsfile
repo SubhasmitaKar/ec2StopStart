@@ -13,19 +13,19 @@ pipeline{
         stage("Build"){
             steps{
                 cleanWs()
-				checkout scm
+		checkout scm
             }
         }
         stage("Install python"){
             steps{
                 sh "sudo apt-get update -y"
                 sh "sudo apt-get install python3 -y"
-				sh "sudo apt-get install python3-pip -y"
-				sh "pip3 install boto3"
-				sh "sleep 10"
+		sh "sudo apt-get install python3-pip -y"
+		sh "pip3 install boto3"
+		sh "sleep 10"
             }
         }
-		stage("Start/Stop"){
+	stage("Start/Stop"){
             steps{
                 sh "python3 ec2StartStop.py $choice"
             }
